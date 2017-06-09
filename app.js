@@ -1,13 +1,17 @@
   // Set the initial array of countries
   var topics = ["United States", "Canada", "Mexico", "Argentina"];
+  var queryURL;
+  var country;
+  var imageSelected;
+  var stillImage;
 
   // Add function displayCountryInfo re-renders the HTML to display the appropriate content
   function displayCountryInfo() {
 
-    var topics = $(this).attr("data-name");
+    country = $(this).attr("data-name");
 
   // Add the API key and the required parameters
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&limit=10&rating=y&rating=g&api_key=dc6zaTOxFJmzC";
+    queryURL = "https://api.giphy.com/v1/gifs/search?q=" + country + "&limit=10&rating=y&rating=g&api_key=dc6zaTOxFJmzC";
 
   // Creates AJAX call for the specific country button being clicked
     $.ajax({
@@ -16,19 +20,79 @@
     }).done(function(response) {
 
   // Creates a div to hold the country
-      $('#country-view').html("<div>"+topics+"</div>");
+      $('#country-view').html("<div>"+country+"</div>");
 
   // Retrieves the Rating and the image
       for (var i =0; i < response.data.length; i++) {
-      var rating = $("<p>" + response.data[i].rating + "</p>");
+      var rating = $("<div>Rating: " + response.data[i].rating + "</div>");
       $('#country-view').append(rating);
-      var stillImage = $('<img src="' + response.data[i].images.downsized_still.url + '" />');
+      var stillImage = $('<img id="'+i+'" class="still" src="' + response.data[i].images.downsized_still.url + '" />');
       $('#country-view').append(stillImage);
     }
 
     });
 
   }
+
+  function animateGif() {
+
+    imageSelected = $(this).attr("id");
+  // Add the API key and the required parameters
+
+  // Creates AJAX call for the specific country button being clicked
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+
+  // Creates a div to hold the country
+      $('#country-view').html("<div>"+country+"</div>");
+
+  // Retrieves the Rating and the image
+      for (var i =0; i < response.data.length; i++) {
+      var rating = $("<div>Rating: " + response.data[i].rating + "</div>");
+
+      $('#country-view').append(rating);
+      if (parseInt(imageSelected) === i) {
+      stillImage = $('<img id="'+i+'" class="animated" src="' + response.data[i].images.downsized.url + '" />');
+    } else {
+      stillImage = $('<img id="'+i+'" class="animated" src="' + response.data[i].images.downsized_still.url + '" />');
+    }
+      $('#country-view').append(stillImage);
+    }
+
+    });
+
+  }
+
+  function stopGif() {
+
+    imageSelected = $(this).attr("id");
+  // Add the API key and the required parameters
+
+  // Creates AJAX call for the specific country button being clicked
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).done(function(response) {
+
+  // Creates a div to hold the country
+      $('#country-view').html("<div>"+country+"</div>");
+
+  // Retrieves the Rating and the image
+      for (var i =0; i < response.data.length; i++) {
+      var rating = $("<div>Rating: " + response.data[i].rating + "</div>");
+      $('#country-view').append(rating);
+
+      stillImage = $('<img id="'+i+'" class="still" src="' + response.data[i].images.downsized_still.url + '" />');
+
+      $('#country-view').append(stillImage);
+    }
+
+    });
+
+  }
+
 
   // Function for displaying country data
   function renderButtons() {
@@ -69,6 +133,8 @@
 
   // Adding click event listeners to all elements with a class of "country"
   $(document).on("click", ".country", displayCountryInfo);
+  $(document).on("click", ".still", animateGif);
+  $(document).on("click", ".animated", stopGif);
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
