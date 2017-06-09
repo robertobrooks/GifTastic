@@ -7,7 +7,7 @@
     var topics = $(this).attr("data-name");
 
   // Add the API key and the required parameters
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&limit=10&rating=y&rating=g&api_key=dc6zaTOxFJmzC";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topics + "&limit=10&rating=y&rating=g&api_key=dc6zaTOxFJmzC";
 
   // Creates AJAX call for the specific country button being clicked
     $.ajax({
