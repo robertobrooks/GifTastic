@@ -11,22 +11,46 @@
 
 <body>
 
-  <div class="container">
-    <h1>GIFs by Country</h1>
+  <div class="container responsive">
+
+    <div class="h1 text-center jumbotron">GIFs by Country</div>
+
+  <div class="wrapper">
+
+    <div class="row col-md-6">
+
+      <img class = "row col-md-12" src="http://pop.h-cdn.co/assets/16/33/480x264/gallery-1471381857-gif-season-2.gif" />
+    </div>
 
     <!-- Rendered buttons will get dumped here  -->
-    <div id="buttons-view"></div>
+    <div class="row col-md-6">
+      <div id="buttons-view"></div>
+    </div>
 
+  </div>
+
+
+
+  <div class="col-md-12 center-block">
+    <hr>
     <form id="country-form">
-      <label for="country-input">Add a country here: </label>
-      <input type="text" id="country-input"><br>
+
+      <div class="col-md-8 center-block">
+      <label class="col-md-4 text-right" for="country-input">Add a country here: </label>
+      <input class="col-md-6" type="text" id="country-input"><br>
+      </div>
 
       <!-- Button triggers new country to be added -->
-      <input id="add-country" type="submit" value="Add a Country">
+      <div class="col-md-4 center-block">
+      <input class="btn rounded col-md-6" id="add-country" type="submit" value="Add a Country">
+      </div>
     </form>
+  </div>
 
     <!-- Countries will get dumped Dere -->
+    <div class="container col-md-12">
     <div id="country-view"></div>
+    </div>
 
     <script
       src="https://code.jquery.com/jquery-2.2.4.min.js"

@@ -20,7 +20,7 @@
     }).done(function(response) {
 
   // Creates a div to hold the country
-      $('#country-view').html("<div>"+country+"</div>");
+      $('#country-view').html("<div class='h2'>"+country+"</div>");
 
   // Retrieves the Rating and the image
       for (var i =0; i < response.data.length; i++) {
@@ -46,7 +46,7 @@
     }).done(function(response) {
 
   // Creates a div to hold the country
-      $('#country-view').html("<div>"+country+"</div>");
+      $('#country-view').html("<div class='h2'>"+country+"</div>");
 
   // Retrieves the Rating and the image
       for (var i =0; i < response.data.length; i++) {
@@ -77,7 +77,7 @@
     }).done(function(response) {
 
   // Creates a div to hold the country
-      $('#country-view').html("<div>"+country+"</div>");
+      $('#country-view').html("<div class='h2'>"+country+"</div>");
 
   // Retrieves the Rating and the image
       for (var i =0; i < response.data.length; i++) {
@@ -104,7 +104,7 @@
     for (var i = 0; i < topics.length; i++) {
 
   // Dinamically buttons for each country in the array
-      var a = $("<button class='btn-sm col-s-1'>");
+      var a = $("<button class='btn-sm btn-primary'>");
 
   // Adds a class of country to  button
       a.addClass("country");
